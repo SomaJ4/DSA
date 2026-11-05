@@ -227,34 +227,79 @@ Node* arr2LL(vector<int> &arr){
 
 
 //4.Delete Node with Value X
-int deleteKthNode(Node* &head , int n){
+// int deleteKthNode(Node* &head , int n){
+
+//     Node* mover = head;
+
+//     if(head->data == n){
+//         head = head->next;
+//         mover->next = nullptr;
+//         delete mover;
+//         return head->data;
+//     }
+
+//     while(mover->next !=nullptr && mover->next->data != n){
+//         mover = mover->next;
+//     }
+
+//     // X not found
+//     if(mover->next == nullptr) {
+//         return head->data;
+//     }
+
+//     if(mover->next->data != n){
+//         return 0;
+//     }
+
+//     Node* temp = mover->next;
+//     mover->next = mover->next->next;
+//     delete(temp);
+   
+//     return head->data;
+// }
+
+// int lengthofLL(Node* head){
+//     int ct = 0;
+//     Node* temp = head;
+//     while(temp){
+//         temp = temp->next;
+//         ct++;
+//     }
+//     return ct;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2LL(arr);
+
+//     // Node* temp = head; 
+//     // while(temp){
+//     //     cout << temp->data << " ";
+//     //     temp = temp->next;
+//     // }
+
+//     // cout << lengthofLL(head);
+//     int n;
+//     cin >> n;
+//     cout << deleteKthNode(head , n) << endl;
+//     cout << lengthofLL(head);
+// }
+
+//5.Inset at Head
+
+int insertAtHead(Node* &head , int n){
 
     Node* mover = head;
 
-    if(head->data == n){
-        head = head->next;
-        mover->next = nullptr;
-        delete mover;
-        return head->data;
+    if(head == nullptr){
+        head->data = n;
+        head->next = nullptr;
     }
 
-    while(mover->next !=nullptr && mover->next->data != n){
-        mover = mover->next;
-    }
-
-    // X not found
-    if(mover->next == nullptr) {
-        return head->data;
-    }
-
-    if(mover->next->data != n){
-        return 0;
-    }
-
-    Node* temp = mover->next;
-    mover->next = mover->next->next;
-    delete(temp);
-   
+    Node* temp = new Node(n);
+    temp->next = mover;
+    head = temp;
+    
     return head->data;
 }
 
@@ -279,8 +324,10 @@ int main(){
     // }
 
     // cout << lengthofLL(head);
+
     int n;
     cin >> n;
-    cout << deleteKthNode(head , n) << endl;
+
+    cout << insertAtHead(head , n) << endl;
     cout << lengthofLL(head);
 }
