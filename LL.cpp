@@ -335,22 +335,79 @@ Node* arr2LL(vector<int> &arr){
 
 //6. Insert At Tail
 
-int insertAtTail(Node* &head , int n){
+// int insertAtTail(Node* &head , int n){
+
+//     Node* mover = head;
+
+//     if(head == nullptr){
+//         head = new Node(n);
+//         head->data = n;
+//         head->next = nullptr;
+//     }
+
+//     while(mover->next!=nullptr){
+//         mover = mover->next;
+//     }
+
+//     Node* tail = new Node(n);
+//     mover->next = tail;
+    
+//     return head->data;
+// }
+
+// int lengthofLL(Node* head){
+//     int ct = 0;
+//     Node* temp = head;
+//     while(temp){
+//         temp = temp->next;
+//         ct++;
+//     }
+//     return ct;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2LL(arr);
+
+//     // Node* temp = head; 
+//     // while(temp){
+//     //     cout << temp->data << " ";
+//     //     temp = temp->next;
+//     // }
+
+//     // cout << lengthofLL(head);
+//     //
+
+//     int n;
+//     cin >> n;
+
+//     cout << insertAtTail(head , n) << endl;
+//     cout << lengthofLL(head);
+// }
+
+//7. Insert before K with X
+
+int insertAtK(Node* &head ,int k ,int n){
 
     Node* mover = head;
 
     if(head == nullptr){
         head = new Node(n);
-        head->data = n;
-        head->next = nullptr;
+        return head->data;
     }
 
-    while(mover->next!=nullptr){
+    if(k == 1){
+        Node* newk = new Node(n , head);
+        head = newk;
+        return head->data;
+    }
+
+    for(int i=1;i<k-1;i++){
         mover = mover->next;
     }
 
-    Node* tail = new Node(n);
-    mover->next = tail;
+    Node* newk = new Node(n , mover->next);
+    mover->next = newk;
     
     return head->data;
 }
@@ -378,9 +435,76 @@ int main(){
     // cout << lengthofLL(head);
     //
 
+    int k;
+    cout << "position :" << endl;
+    cin >> k;
+
     int n;
+    cout << "value :" << endl;
     cin >> n;
 
-    cout << insertAtTail(head , n) << endl;
+    cout << insertAtK(head , k , n) << endl;
+    cout << lengthofLL(head);
+}
+
+//8. Insert Before X
+
+int insertBeforeX(Node* &head ,int x ,int n){
+
+    Node* mover = head;
+
+    if(head == nullptr){
+        head = new Node(n);
+        return head->data;
+    }
+
+    if(head->data == x){
+        Node* newk = new Node(n , mover);
+        head = newk;
+        return head->data;
+    }
+
+    while(mover->next != nullptr && mover->next->data != x){
+        mover = mover->next;
+    }
+
+    Node* newk = new Node(n , mover->next);
+    mover->next = newk;
+    
+    return head->data;
+}
+
+int lengthofLL(Node* head){
+    int ct = 0;
+    Node* temp = head;
+    while(temp){
+        temp = temp->next;
+        ct++;
+    }
+    return ct;
+}
+
+int main(){
+    vector<int> arr = {2 , 5 , 8 , 7};
+    Node* head = arr2LL(arr);
+
+    // Node* temp = head; 
+    // while(temp){
+    //     cout << temp->data << " ";
+    //     temp = temp->next;
+    // }
+
+    // cout << lengthofLL(head);
+    //
+
+    int x;
+    cout << "target :" << endl;
+    cin >> x;
+
+    int n;
+    cout << "insert :" << endl;
+    cin >> n;
+
+    cout << insertBeforeX(head , x , n) << endl;
     cout << lengthofLL(head);
 }
