@@ -163,3 +163,131 @@ void print(Node* head){
 //     return 0;
 // }
 
+// //---------------------------------//
+// //5.InsertBeforeHead
+// int insertb4Head(Node* &head, int n){
+
+//     Node* temp = new Node(n);
+//     temp->next = head;
+//     head->back = temp;
+//     head = temp;
+    
+//     return head->data;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2DLL(arr);
+
+//     int n;
+//     cin >> n;
+
+//     cout << insertb4Head(head , n) << endl;
+//     print(head);
+//     return 0;
+// }
+
+
+// //---------------------------------//
+// //6.InsertBeforeTail
+// int insertb4Head(Node* &head, int n){
+
+//     Node* temp = new Node(n);
+//     Node* mover = head;
+
+//     while(mover->next->next != nullptr){
+//         mover = mover->next;
+//     }
+
+//     mover->next->back = temp;
+//     temp->next = mover->next;
+//     mover->next = temp;
+//     temp->back = mover;
+
+//     return head->data;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2DLL(arr);
+
+//     int n;
+//     cin >> n;
+
+//     cout << insertb4Head(head , n) << endl;
+//     print(head);
+//     return 0;
+// }
+
+
+//---------------------------------//
+//7.InsertBeforeKthNode
+// int insertb4Head(Node* &head, int n , int k){
+
+//     Node* temp = new Node(n);
+//     Node* mover = head;
+
+//     for(int i=1;i<k-1;i++){
+//         mover = mover->next;
+//     }
+
+//     mover->next->back = temp;
+//     temp->next = mover->next;
+//     mover->next = temp;
+//     temp->back = mover;
+
+//     return head->data;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2DLL(arr);
+
+//     int n;
+//     cout << "val" << endl;
+//     cin >> n;
+
+//     int k;
+//     cout << "pos" << endl;
+//     cin >> k;
+
+//     cout << insertb4Head(head , n , k) << endl;
+//     print(head);
+//     return 0;
+// }
+
+//---------------------------------//
+//8.InsertBeforeKthNode
+// int insertb4Head(Node* &head, int n , int k){
+
+//     Node* temp = new Node(n);
+//     Node* mover = head;
+
+//     while(mover->next->data != k){
+//         mover = mover->next;
+//     }
+
+//     mover->next->back = temp;
+//     temp->next = mover->next;
+//     mover->next = temp;
+//     temp->back = mover;
+
+//     return head->data;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2DLL(arr);
+
+//     int n;
+//     cout << "val" << endl;
+//     cin >> n;
+
+//     int k;
+//     cout << "matchfor" << endl;
+//     cin >> k;
+
+//     cout << insertb4Head(head , n , k) << endl;
+//     print(head);
+//     return 0;
+// }
