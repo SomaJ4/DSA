@@ -287,18 +287,70 @@ Node* arr2LL(vector<int> &arr){
 
 //5.Inset at Head
 
-int insertAtHead(Node* &head , int n){
+// int insertAtHead(Node* &head , int n){
+
+//     Node* mover = head;
+
+//     if(head == nullptr){
+//         head->data = n;
+//         head->next = nullptr;
+//     }
+
+//     Node* temp = new Node(n);
+//     temp->next = mover;
+//     head = temp;
+    
+//     return head->data;
+// }
+
+// int lengthofLL(Node* head){
+//     int ct = 0;
+//     Node* temp = head;
+//     while(temp){
+//         temp = temp->next;
+//         ct++;
+//     }
+//     return ct;
+// }
+
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2LL(arr);
+
+//     // Node* temp = head; 
+//     // while(temp){
+//     //     cout << temp->data << " ";
+//     //     temp = temp->next;
+//     // }
+
+//     // cout << lengthofLL(head);
+//     //
+
+//     int n;
+//     cin >> n;
+
+//     cout << insertAtHead(head , n) << endl;
+//     cout << lengthofLL(head);
+// }
+
+//6. Insert At Tail
+
+int insertAtTail(Node* &head , int n){
 
     Node* mover = head;
 
     if(head == nullptr){
+        head = new Node(n);
         head->data = n;
         head->next = nullptr;
     }
 
-    Node* temp = new Node(n);
-    temp->next = mover;
-    head = temp;
+    while(mover->next!=nullptr){
+        mover = mover->next;
+    }
+
+    Node* tail = new Node(n);
+    mover->next = tail;
     
     return head->data;
 }
@@ -329,6 +381,6 @@ int main(){
     int n;
     cin >> n;
 
-    cout << insertAtHead(head , n) << endl;
+    cout << insertAtTail(head , n) << endl;
     cout << lengthofLL(head);
 }
