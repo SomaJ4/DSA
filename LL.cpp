@@ -73,41 +73,41 @@ Node* arr2LL(vector<int> &arr){
 //     cout << search(head , a);
 // }
 
-//1. Delete Head Node
-// int deleteheadnode(Node*& head){
-//     //linkedlist ka pahila element is head basically
-//     Node* temp = head;
-//     head = head->next;
-//     temp->next = nullptr;
-//     delete temp;
-//     return head->data;
-// }
+// 1. Delete Head Node
+int deleteheadnode(Node* &head){
+    //linkedlist ka pahila element is head basically
+    Node* temp = head;
+    head = head->next;
+    temp->next = nullptr;
+    delete temp;
+    return head->data;
+}
 
-// int lengthofLL(Node* head){
-//     int ct = 0;
-//     Node* temp = head;
-//     while(temp){
-//         temp = temp->next;
-//         ct++;
-//     }
-//     return ct;
-// }
+int lengthofLL(Node* head){
+    int ct = 0;
+    Node* temp = head;
+    while(temp){
+        temp = temp->next;
+        ct++;
+    }
+    return ct;
+}
 
-// int main(){
-//     vector<int> arr = {2 , 5 , 8 , 7};
-//     Node* head = arr2LL(arr);
+int main(){
+    vector<int> arr = {2 , 5 , 8 , 7};
+    Node* head = arr2LL(arr);
 
-//     // Node* temp = head; 
-//     // while(temp){
-//     //     cout << temp->data << " ";
-//     //     temp = temp->next;
-//     // }
+    // Node* temp = head; 
+    // while(temp){
+    //     cout << temp->data << " ";
+    //     temp = temp->next;
+    // }
 
-//     // cout << lengthofLL(head);
+    // cout << lengthofLL(head);
 
-//     cout << deleteheadnode(head) << endl;
-//     cout << lengthofLL(head);
-// }
+    cout << deleteheadnode(head) << endl;
+    cout << lengthofLL(head);
+}
 
 //2. Delete Tail Node
 // int deleteTailNode(Node* head){
@@ -387,124 +387,124 @@ Node* arr2LL(vector<int> &arr){
 
 //7. Insert before K with X
 
-int insertAtK(Node* &head ,int k ,int n){
+// int insertAtK(Node* &head ,int k ,int n){
 
-    Node* mover = head;
+//     Node* mover = head;
 
-    if(head == nullptr){
-        head = new Node(n);
-        return head->data;
-    }
+//     if(head == nullptr){
+//         head = new Node(n);
+//         return head->data;
+//     }
 
-    if(k == 1){
-        Node* newk = new Node(n , head);
-        head = newk;
-        return head->data;
-    }
+//     if(k == 1){
+//         Node* newk = new Node(n , head);
+//         head = newk;
+//         return head->data;
+//     }
 
-    for(int i=1;i<k-1;i++){
-        mover = mover->next;
-    }
+//     for(int i=1;i<k-1;i++){
+//         mover = mover->next;
+//     }
 
-    Node* newk = new Node(n , mover->next);
-    mover->next = newk;
+//     Node* newk = new Node(n , mover->next);
+//     mover->next = newk;
     
-    return head->data;
-}
+//     return head->data;
+// }
 
-int lengthofLL(Node* head){
-    int ct = 0;
-    Node* temp = head;
-    while(temp){
-        temp = temp->next;
-        ct++;
-    }
-    return ct;
-}
+// int lengthofLL(Node* head){
+//     int ct = 0;
+//     Node* temp = head;
+//     while(temp){
+//         temp = temp->next;
+//         ct++;
+//     }
+//     return ct;
+// }
 
-int main(){
-    vector<int> arr = {2 , 5 , 8 , 7};
-    Node* head = arr2LL(arr);
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2LL(arr);
 
-    // Node* temp = head; 
-    // while(temp){
-    //     cout << temp->data << " ";
-    //     temp = temp->next;
-    // }
+//     // Node* temp = head; 
+//     // while(temp){
+//     //     cout << temp->data << " ";
+//     //     temp = temp->next;
+//     // }
 
-    // cout << lengthofLL(head);
-    //
+//     // cout << lengthofLL(head);
+//     //
 
-    int k;
-    cout << "position :" << endl;
-    cin >> k;
+//     int k;
+//     cout << "position :" << endl;
+//     cin >> k;
 
-    int n;
-    cout << "value :" << endl;
-    cin >> n;
+//     int n;
+//     cout << "value :" << endl;
+//     cin >> n;
 
-    cout << insertAtK(head , k , n) << endl;
-    cout << lengthofLL(head);
-}
+//     cout << insertAtK(head , k , n) << endl;
+//     cout << lengthofLL(head);
+// }
 
 //8. Insert Before X
 
-int insertBeforeX(Node* &head ,int x ,int n){
+// int insertBeforeX(Node* &head ,int x ,int n){
 
-    Node* mover = head;
+//     Node* mover = head;
 
-    if(head == nullptr){
-        head = new Node(n);
-        return head->data;
-    }
+//     if(head == nullptr){
+//         head = new Node(n);
+//         return head->data;
+//     }
 
-    if(head->data == x){
-        Node* newk = new Node(n , mover);
-        head = newk;
-        return head->data;
-    }
+//     if(head->data == x){
+//         Node* newk = new Node(n , mover);
+//         head = newk;
+//         return head->data;
+//     }
 
-    while(mover->next != nullptr && mover->next->data != x){
-        mover = mover->next;
-    }
+//     while(mover->next != nullptr && mover->next->data != x){
+//         mover = mover->next;
+//     }
 
-    Node* newk = new Node(n , mover->next);
-    mover->next = newk;
+//     Node* newk = new Node(n , mover->next);
+//     mover->next = newk;
     
-    return head->data;
-}
+//     return head->data;
+// }
 
-int lengthofLL(Node* head){
-    int ct = 0;
-    Node* temp = head;
-    while(temp){
-        temp = temp->next;
-        ct++;
-    }
-    return ct;
-}
+// int lengthofLL(Node* head){
+//     int ct = 0;
+//     Node* temp = head;
+//     while(temp){
+//         temp = temp->next;
+//         ct++;
+//     }
+//     return ct;
+// }
 
-int main(){
-    vector<int> arr = {2 , 5 , 8 , 7};
-    Node* head = arr2LL(arr);
+// int main(){
+//     vector<int> arr = {2 , 5 , 8 , 7};
+//     Node* head = arr2LL(arr);
 
-    // Node* temp = head; 
-    // while(temp){
-    //     cout << temp->data << " ";
-    //     temp = temp->next;
-    // }
+//     // Node* temp = head; 
+//     // while(temp){
+//     //     cout << temp->data << " ";
+//     //     temp = temp->next;
+//     // }
 
-    // cout << lengthofLL(head);
-    //
+//     // cout << lengthofLL(head);
+//     //
 
-    int x;
-    cout << "target :" << endl;
-    cin >> x;
+//     int x;
+//     cout << "target :" << endl;
+//     cin >> x;
 
-    int n;
-    cout << "insert :" << endl;
-    cin >> n;
+//     int n;
+//     cout << "insert :" << endl;
+//     cin >> n;
 
-    cout << insertBeforeX(head , x , n) << endl;
-    cout << lengthofLL(head);
-}
+//     cout << insertBeforeX(head , x , n) << endl;
+//     cout << lengthofLL(head);
+// }
