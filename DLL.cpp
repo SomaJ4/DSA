@@ -291,3 +291,5 @@ void print(Node* head){
 //     print(head);
 //     return 0;
 // }
+
+//Add Cases logic for listlength null & 1.
