@@ -117,45 +117,109 @@ struct Node{
 //     }
 // }
 
+Node* insert(Node* root , int k){
+    queue<Node*> q;
+    struct Node* temp = root;
+    q.push(temp);
+    struct Node* addn = new Node(k);
 
-// int main(){
+    if(root == nullptr){
+        temp = addn;
+        return temp;
+    }
 
-//     queue<Node*> q;
+    while(!q.empty()){
+        temp = q.front();
+        q.pop();
 
-//     struct Node* root = new Node(1);
-//     root->left = new Node(2);
-//     root->right = new Node(3);
-//     root->left->left = new Node(4);
-//     root->left->right = new Node(5);
-//     root->left->right->left = new Node(6);
-//     root->right->left = new Node(7);
-//     root->right->right = new Node(8);
-//     root->right->right->left = new Node(9);
-//     root->right->right->right = new Node(10);
+        if(temp->left!=nullptr){
+            q.push(temp->left);
+        }
+        else{
+            temp->left = addn;
+            return addn;
+        }
+        if(temp->right!=nullptr){
+            q.push(temp->right);
+        }
+        else{
+            temp->right = addn;
+            return addn;
+        }
+    }
 
-//     struct Node* temp = root;
-//     q.push(temp);
-//     while(!q.empty()){
+    return addn;
+}
 
-//         int n = q.size();
+Node* update(Node* root , int j , int k){
+    queue<Node*> q;
+    struct Node* temp = root;
+    q.push(temp);
 
-//         for(int i=0;i<n;i++){
-//             cout << (q.front())->data << " ";    
-//             temp = q.front();
-//             if(temp->left != nullptr){
-//                 q.push(temp->left);
-//             }
-//             if(temp->right != nullptr){
-//                 q.push(temp->right);
-//             }
-//             q.pop();
-//         }
+    if(root == nullptr){
+        return root;
+    }
 
-//         cout << endl;
+    while(!q.empty()){
+        temp = q.front();
+        q.pop();
 
-//     }
+        if(temp->left->data!=j){
+            q.push(temp->left);
+        }
+        else{
+            temp->left->data = k;
+            return root;
+        }
+        if(temp->right->data!=j){
+            q.push(temp->right);
+        }
+        else{
+            temp->right->data = k;
+            return root;
+        }
+    }
 
-// }
+    return root;
+}
+
+
+void levelorder(Node* root){
+
+    Node* temp = root;
+    queue<Node*> q;
+
+    if(root == nullptr) return;
+
+    q.push(temp);
+    while(!q.empty()){
+
+        cout << (q.front())->data << " ";    
+        temp = q.front();
+        if(temp->left != nullptr){
+            q.push(temp->left);
+        }
+        if(temp->right != nullptr){
+            q.push(temp->right);
+        }
+        q.pop();
+
+    }
+}
+
+
+int main(){
+
+    struct Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    
+    cout << insert(root , 6) << endl;
+    cout << update(root , 5 , 7) << endl;
+    levelorder(root);
+}
 
 
 //iterative preorder
@@ -244,3 +308,44 @@ struct Node{
 
 // }
 
+// iterative inorder
+
+// int main(){
+
+//     stack<Node*> s;
+
+//     struct Node* root = new Node(1);
+//     root->left = new Node(2);
+//     root->right = new Node(3);
+//     root->left->left = new Node(4);
+//     root->left->right = new Node(5);
+//     root->left->right->left = new Node(6);
+//     root->right->left = new Node(7);
+//     root->right->right = new Node(8);
+//     root->right->right->left = new Node(9);
+//     root->right->right->right = new Node(10);
+
+//     struct Node* temp = root;
+
+//     if(root == nullptr) return 0;
+
+//     s.push(temp);
+//     while(!s.empty() && (s.top()->right != nullptr)){
+
+               
+//             temp = s.top();
+
+//             // s.pop();
+            
+//             if(temp->left != nullptr){
+//                 s.push(temp->left);
+//             }
+
+            // cout << (s.top())->data << " "; 
+
+            // if(temp->right != nullptr){
+            //     s.push(temp->right);
+            // }
+//     }
+
+// }
