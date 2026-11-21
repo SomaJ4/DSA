@@ -206,7 +206,6 @@ void levelorder(Node* root){
 
     }
 }
-//pausopauso
 
 int main(){
 
