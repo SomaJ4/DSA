@@ -376,23 +376,18 @@ Node* insert(Node* root , int key){
     Node* temp = root;
     Node* parent = root;
 
-    if(root == nullptr) return nullptr;
+    if(root == nullptr) return new Node(key);
 
     while(temp != nullptr){
 
-        if(temp->data == key){
+        if(temp->data == key || temp->data > key){
             parent = temp;
             temp = temp->left;
         }
 
-        else if(temp->data < key){
+        else{
             parent = temp;
             temp = temp->right;
-        }
-
-        else {
-            parent = temp;
-            temp = temp->left;
         }
 
     }
@@ -400,11 +395,11 @@ Node* insert(Node* root , int key){
 
     if(parent->data < key){
         parent->right = new Node(key);
-        return parent->right;
+        return root;
     }
-    else if(parent->data > key){
+    else{
         parent->left = new Node(key);
-        return parent->left;
+        return root;
     }
      
 }
