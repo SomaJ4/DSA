@@ -29,8 +29,8 @@ struct Node{
 // //     }
 
 // //     cout << node->data << " ";
-// //     postorder(node->left);
-// //     postorder(node->right);
+// //     preorder(node->left);
+// //     preorder(node->right);
 // // }
 
 // // void inorder(Node* node){
@@ -38,9 +38,9 @@ struct Node{
 // //         return;
 // //     }
 
-// //     postorder(node->left);
+// //     inorder(node->left);
 // //     cout << node->data << " ";
-// //     postorder(node->right);
+// //     inorder(node->right);
 // // }
 
 // // int main(){
@@ -117,108 +117,103 @@ struct Node{
 //     }
 // }
 
-Node* insert(Node* root , int k){
-    queue<Node*> q;
-    struct Node* temp = root;
-    q.push(temp);
-    struct Node* addn = new Node(k);
+// Node* insert(Node* root , int k){
+//     queue<Node*> q;
+//     struct Node* temp = root;
+//     q.push(temp);
+//     struct Node* addn = new Node(k);
 
-    if(root == nullptr){
-        temp = addn;
-        return temp;
-    }
+//     if(root == nullptr){
+//         temp = addn;
+//         return temp;
+//     }
 
-    while(!q.empty()){
-        temp = q.front();
-        q.pop();
+//     while(!q.empty()){
+//         temp = q.front();
+//         q.pop();
 
-        if(temp->left!=nullptr){
-            q.push(temp->left);
-        }
-        else{
-            temp->left = addn;
-            return addn;
-        }
-        if(temp->right!=nullptr){
-            q.push(temp->right);
-        }
-        else{
-            temp->right = addn;
-            return addn;
-        }
-    }
+//         if(temp->left!=nullptr){
+//             q.push(temp->left);
+//         }
+//         else{
+//             temp->left = addn;
+//             return addn;
+//         }
+//         if(temp->right!=nullptr){
+//             q.push(temp->right);
+//         }
+//         else{
+//             temp->right = addn;
+//             return addn;
+//         }
+//     }
 
-    return addn;
-}
+//     return addn;
+// }
 
-Node* update(Node* root , int j , int k){
-    queue<Node*> q;
-    struct Node* temp = root;
-    q.push(temp);
+// Node* update(Node* root , int j , int k){
+//     queue<Node*> q;
+//     struct Node* temp = root;
+//     q.push(temp);
 
-    if(root == nullptr){
-        return root;
-    }
+//     if(root == nullptr){
+//         return nullptr;
+//     }
 
-    while(!q.empty()){
-        temp = q.front();
-        q.pop();
+//     while(!q.empty()){
+//         temp = q.front();
+//         q.pop();
 
-        if(temp->left->data!=j){
-            q.push(temp->left);
-        }
-        else{
-            temp->left->data = k;
-            return root;
-        }
-        if(temp->right->data!=j){
-            q.push(temp->right);
-        }
-        else{
-            temp->right->data = k;
-            return root;
-        }
-    }
-
-    return root;
-}
+//         if(temp->data == j){
+//             temp->data = k;
+//             return temp;
+//         }
+//         if(temp->left){
+//             q.push(temp->left);
+//         }
+//         if(temp->right){
+//             q.push(temp->right);
+//         }
+//     }
+//     return nullptr;    
+// }
 
 
-void levelorder(Node* root){
+// void levelorder(Node* root){
 
-    Node* temp = root;
-    queue<Node*> q;
+//     Node* temp = root;
+//     queue<Node*> q;
 
-    if(root == nullptr) return;
+//     if(root == nullptr) return;
 
-    q.push(temp);
-    while(!q.empty()){
+//     q.push(temp);
+//     while(!q.empty()){
 
-        cout << (q.front())->data << " ";    
-        temp = q.front();
-        if(temp->left != nullptr){
-            q.push(temp->left);
-        }
-        if(temp->right != nullptr){
-            q.push(temp->right);
-        }
-        q.pop();
+//         cout << (q.front())->data << " ";    
+//         temp = q.front();
+//         if(temp->left != nullptr){
+//             q.push(temp->left);
+//         }
+//         if(temp->right != nullptr){
+//             q.push(temp->right);
+//         }
+//         q.pop();
 
-    }
-}
+//     }
+// }
 
-int main(){
+// int main(){
 
-    struct Node* root = new Node(1);
-    root->left = new Node(2);
-    root->right = new Node(3);
-    root->left->left = new Node(4);
-    root->left->right = new Node(5);
+//     struct Node* root = new Node(1);
+//     root->left = new Node(2);
+//     root->right = new Node(3);
+//     root->left->left = new Node(4);
+//     root->left->right = new Node(5);
     
-    cout << insert(root , 6) << endl;
-    cout << update(root , 5 , 7) << endl;
-    levelorder(root);
-}
+//     cout << insert(root , 6) << endl;
+//     cout << update(root , 3 , 7) << endl;
+//     levelorder(root);
+// }
 
 
 //iterative preorder
@@ -348,3 +343,51 @@ int main(){
 //     }
 
 // }
+
+
+
+
+//BST
+
+Node* search(Node* root , int key){
+    Node* temp = root;
+
+    if(root == nullptr) return nullptr;
+
+    while(temp != nullptr){
+
+        if(temp->data == key){
+            return temp;
+        }
+
+        else if(temp->data < key){
+            temp = temp->right;
+        }
+
+        else {
+            temp = temp->left;
+        }
+
+    }
+    return nullptr;
+}
+
+int main(){
+
+    struct Node* root = new Node(5);
+
+    //constructing the BST
+    root->left = new Node(3);
+    root->right = new Node(8);
+    root->left->left = new Node(1);
+    root->left->right = new Node(4);
+    root->left->left->right = new Node(2);
+    root->right->left = new Node(7);
+    root->right->right = new Node(10);
+    root->right->right->left = new Node(9);
+    root->right->right->right = new Node(12);
+
+    cout << search(root , 8);
+
+    // preorder(root);
+}
