@@ -23,15 +23,15 @@ struct Node{
 // //     cout << node->data << " ";
 // // }
 
-// // void preorder(Node* node){
-// //     if(node == nullptr){
-// //         return;
-// //     }
+//// void preorder(Node* node){
+////     if(node == nullptr){
+////         return;
+////     }
 
-// //     cout << node->data << " ";
-// //     preorder(node->left);
-// //     preorder(node->right);
-// // }
+////     cout << node->data << " ";
+////     preorder(node->left);
+////     preorder(node->right);
+//// }
 
 // // void inorder(Node* node){
 // //     if(node == nullptr){
@@ -372,6 +372,43 @@ Node* search(Node* root , int key){
     return nullptr;
 }
 
+Node* insert(Node* root , int key){
+    Node* temp = root;
+    Node* parent = root;
+
+    if(root == nullptr) return nullptr;
+
+    while(temp != nullptr){
+
+        if(temp->data == key){
+            parent = temp;
+            temp = temp->left;
+        }
+
+        else if(temp->data < key){
+            parent = temp;
+            temp = temp->right;
+        }
+
+        else {
+            parent = temp;
+            temp = temp->left;
+        }
+
+    }
+    // return nullptr;  
+
+    if(parent->data < key){
+        parent->right = new Node(key);
+        return parent->right;
+    }
+    else if(parent->data > key){
+        parent->left = new Node(key);
+        return parent->left;
+    }
+     
+}
+
 int main(){
 
     struct Node* root = new Node(5);
@@ -387,7 +424,6 @@ int main(){
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(12);
 
-    cout << search(root , 8);
-
-    // preorder(root);
+    // cout << search(root , 13);
+    cout << insert(root , 10) << endl;
 }
