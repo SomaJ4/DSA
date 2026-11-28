@@ -349,59 +349,112 @@ struct Node{
 
 //BST
 
+// Node* search(Node* root , int key){
+//     Node* temp = root;
+
+//     if(root == nullptr) return nullptr;
+
+//     while(temp != nullptr){
+
+//         if(temp->data == key){
+//             return temp;
+//         }
+
+//         else if(temp->data < key){
+//             temp = temp->right;
+//         }
+
+//         else {
+//             temp = temp->left;
+//         }
+
+//     }
+//     return nullptr;
+// }
+
+// Node* insert(Node* root , int key){
+//     Node* temp = root;
+//     Node* parent = root;
+
+//     if(root == nullptr) return new Node(key);
+
+//     while(temp != nullptr){
+
+//         if(temp->data == key || temp->data > key){
+//             parent = temp;
+//             temp = temp->left;
+//         }
+
+//         else{
+//             parent = temp;
+//             temp = temp->right;
+//         }
+
+//     }
+//     // return nullptr;  
+
+//     if(parent->data < key){
+//         parent->right = new Node(key);
+//         return root;
+//     }
+//     else{
+//         parent->left = new Node(key);
+//         return root;
+//     }
+     
+// }
+
+// int main(){
+
+//     struct Node* root = new Node(5);
+
+//     //constructing the BST
+//     root->left = new Node(3);
+//     root->right = new Node(8);
+//     root->left->left = new Node(1);
+//     root->left->right = new Node(4);
+//     root->left->left->right = new Node(2);
+//     root->right->left = new Node(7);
+//     root->right->right = new Node(10);
+//     root->right->right->left = new Node(9);
+//     root->right->right->right = new Node(12);
+
+//     // cout << search(root , 13);
+//     cout << insert(root , 10) << endl;
+// }
+
+
+//BST via Recursion
+
 Node* search(Node* root , int key){
-    Node* temp = root;
+    // Node* temp = root;
 
     if(root == nullptr) return nullptr;
 
-    while(temp != nullptr){
-
-        if(temp->data == key){
-            return temp;
-        }
-
-        else if(temp->data < key){
-            temp = temp->right;
-        }
-
-        else {
-            temp = temp->left;
-        }
-
+    else if(root->data == key){
+        return root;
     }
-    return nullptr;
+    else if(root->data < key){
+        return search(root->right , key);
+    }
+    else {
+        return search(root->left , key);
+    }
 }
 
 Node* insert(Node* root , int key){
-    Node* temp = root;
-    Node* parent = root;
 
     if(root == nullptr) return new Node(key);
 
-    while(temp != nullptr){
-
-        if(temp->data == key || temp->data > key){
-            parent = temp;
-            temp = temp->left;
-        }
-
-        else{
-            parent = temp;
-            temp = temp->right;
-        }
-
+    if(root->data > key){
+        root->left = insert(root->left , key);
     }
-    // return nullptr;  
 
-    if(parent->data < key){
-        parent->right = new Node(key);
-        return root;
-    }
     else{
-        parent->left = new Node(key);
-        return root;
+        root->right = insert(root->right , key);    
     }
-     
+    
+    return root;
 }
 
 int main(){
@@ -420,5 +473,7 @@ int main(){
     root->right->right->right = new Node(12);
 
     // cout << search(root , 13);
-    cout << insert(root , 10) << endl;
+    cout << insert(root , 6) << endl;
+    cout << root << endl;
+    cout << search(root , 6);
 }
